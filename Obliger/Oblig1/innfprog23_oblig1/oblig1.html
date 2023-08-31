@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nb">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleksamen 1 - finn feilene</title>
+    <!-- CSS-stiler. Dette skal ikke endres -->
+    <style>
+        div#mainframe {
+            background-color: #b61010;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        div#background {
+            width: 80vw;
+            height: 80vh;
+            background-size: cover;
+            background-image: url('start-cat.jpg');
+            background-color: #232323;
+            background-position: center center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainframe">
+        <div id="background"></div>
+    </div>
+
+
+    <!-- 
+	JavaScript. Her finnes 10 feil som må rettes for at det riktige bildet skal vises.
+        PS: Du skal ikke skrive om koden, kun rette den opp der du finner feil.
+        Kommenter hver feil du finner! 
+    -->
+    <script>
+        //1 mangler gåseøyne og semikolon
+        const examtype = "error";
+        //2 mangler kolon bytte ut med 'er lik' tegn
+        const studenttype = "hero";
+
+        const maxScore = 1337;
+        //3 const byttes ut med let
+        let currentScore = 330;
+
+        //4 kolon byttes ut med semikolon og skal være ett 'er lik' tegn
+        const addedScore = currentScore * 4;
+        //5 fjernet gåseøyne
+        const missingMaxScore = 17;
+        //6 rettet opp skrivefeil på 'addedScore'
+        currentScore = addedScore + missingMaxScore;
+
+        const green = "0, 128, 0";
+
+        // 7 
+        if (maxScore === 1337) {
+            const successImage = `${examtype}-{studenttype}`
+        }
+
+        //bracket byttes ut med {
+        //skal være 3 'er lik' tegn    
+            if (currentScore === maxScore) {
+            document.getElementByIDE("background").style.backgroundImage = "url(" + successImage + ".jpg)"
+            document.getElementById("mainframe"),style.backgroundColor = "rgb(" + greeen + ")"
+        }
+    </script>
+</body>
+
+</html>
