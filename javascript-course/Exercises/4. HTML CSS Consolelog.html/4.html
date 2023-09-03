@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .button {
+      border: 4px;
+    }
+    .cart-button {
+      background-color: orange;
+    }
+
+    .buy-now-button {
+      background-color: darkorange;
+    }
+  </style>
+</head>
+<body>
+  <p>Adults Plain Cotton T-shirt</p>
+  <p>Price: $7.99</p>
+
+  <button class="cart-button"
+    onclick="
+      alert('Added to cart')">
+    Add to cart
+  </button>
+
+  <button class="buy-now-button"
+    onclick="
+      console.log('Loading...')
+      alert('Purchased')">
+    Buy now
+  </button>
+</body>
+</html>
