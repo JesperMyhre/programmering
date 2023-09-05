@@ -8,29 +8,37 @@
 <body>
     <button onclick="
         cost += 5;
-        console.log(`Cost so far: ${cost}`);
+        updateCostandTax();
+        console.log(`Cost so far: $${cost}`);
     ">Coffee</button>
 
     <button onclick="
         cost += 3;
-        console.log(`Cost so far: ${cost}`);
+        updateCostandTax();
+        console.log(`Cost so far: $${cost}`);
     ">Bagel</button>
 
     <button onclick="
         cost += 9;
-        console.log(`Cost so far: ${cost}`);
+        updateCostandTax();
+        console.log(`Cost so far: $${cost}`);
     ">Soup</button>
 
     <button onclick="
-        console.log(`Your total is: $${cost}`);
-        console.log(`Tax: $${cost * 0.1}`);
+        console.log(`Price: $${cost}`);
+        console.log(`Tax: $${tax}`);
+        console.log(`Your total is: $${cost + tax}`);
     ">Calculate</button>
     <script>
         const name = 'Jesper';
         console.log(`My name is: ${name}`);
-
+        
         let cost = 0;
+        let tax = 0;
 
+        function updateCostandTax(){
+            tax = cost * 0.1;
+        }
 
     </script>
 </body>
