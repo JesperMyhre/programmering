@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinflip</title>
+</head>
+
+<body>
+    <!--
+    <button onclick="
+        const randomNumber = Math.random();
+        let coinFlip = '';
+
+        if (randomNumber >= 0.5) {
+            coinFlip = 'Heads';
+        } else {
+            coinFlip = 'Tails';
+        }
+
+        let result = '';
+        const guess = 'Heads';
+
+        if(coinFlip === 'Heads' && guess === 'Heads') {
+            result = 'You guessed correctly';
+        } else if(coinFlip === 'Tails' && guess === 'Tails') {
+            result = 'You guessed correctly';
+        } else {
+            result = 'You lost!';
+        }
+
+        alert(`You picked ${guess}. It is ${coinFlip}. ${result}!`)
+    ">Flip a coin</button>-->
+
+    <button onclick="
+        const randomNumber = Math.random()
+        const result = randomNumber > 0.5 ? 'Heads' : 'Tails';
+
+        const guess = 'Heads'
+        alert(guess === result ? `It was ${result}. You win!` : `It was ${result}. You lose!`);
+
+
+
+
+    ">Flip another coin</button>
+
+    <script>
+
+
+
+
+    </script>
+</body>
+
+</html>
