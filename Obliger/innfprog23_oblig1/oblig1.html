@@ -51,24 +51,24 @@
 
         //Feil 4: 1 'er lik', og semikolon istedenfor kolon
         const addedScore = currentScore * 4;
-        //Feil string skal være tall
+        //Feil 5: string skal være tall
         const missingMaxScore = 17;
-        //Feil 5: skrivefeil på addedScore
+        //Feil 6: skrivefeil på addedScore
         currentScore = addedScore + missingMaxScore;
 
         const green = "0, 128, 0";
         let successImage
         
         if (maxScore == 1337) {
-            //Feil 6: mangler $
+            //Feil 7: mangler $
             successImage = `${examType}-${studentType}`;
         }
         
-        //Feil 7: 1 er lik for mye, og feil bracket
+        //Feil 8: 1 er lik for mye, og feil bracket
                 if (currentScore === maxScore) {
-                //Feil 8: skrivefeil på getElement
+                //Feil 9: skrivefeil på getElement
                 document.getElementById("background").style.backgroundImage = "url(" + successImage + ".jpg)";
-                //Feil 9: komma hvor det skal være punktum, green skrevet feil
+                //Feil 10: komma hvor det skal være punktum, green skrevet feil
                 document.getElementById("mainframe").style.backgroundColor = "rgb(" + green + ")";
             }
 
