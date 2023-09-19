@@ -57,6 +57,7 @@
         currentScore = addedScore + missingMaxScore;
 
         const green = "0, 128, 0";
+        //(feil)* vet man ikke skal skrive om kode, men fikk ikke koden til å kjøre riktig uten at variabelen var i global scope
         let successImage
         
         if (maxScore == 1337) {
@@ -71,9 +72,6 @@
                 //Feil 10: komma hvor det skal være punktum, green skrevet feil
                 document.getElementById("mainframe").style.backgroundColor = "rgb(" + green + ")";
             }
-
-        console.log(currentScore === maxScore);
-        console.log(typeof currentScore);
     </script>
 </body>
 
