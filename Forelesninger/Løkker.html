@@ -4,10 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Løkker</title>
+
+    <style>
+        .h2 {
+            flex-direction: row;
+        }
+    </style>
 </head>
 <body>
+    <h2>Nedtelling fra 10</h2>
+    <section id="countdown"></section>
+
+    <h2>Alle femmerne mellom 50 og 100</h2>
+    <section id="fives"></section>
+
+    <h2>Sum of hundred</h2>
+    <p id="hundred"></p>
+
+    <h2>Tall delelig på 7</h2>
+    <p id="seven"></p>
+
     <script>
+        /*for(let teller = 10; teller >= 0; teller--) {
+            document.getElementById("countdown").innerHTML += `<p>${teller}</p>`;
+        }
+
+        for(let fives = 50; fives <= 100; fives = fives + 5) {
+            document.getElementById("fives").innerHTML += `<p>${fives}</p>`
+        }
+
+        let whileTeller = 1;
+        while(whileTeller < 20) {
+            document.getElementById("fives").innerHTML += `<p>${whileTeller}</p>`;
+            whileTeller++;
+        }
+        let sum = 0;
+        const max = 100;
+        for(let tall = 1; tall <= max; tall++) {
+            sum += tall;
+            console.log(sum);
+            if(tall < max) {
+                document.getElementById("hundred").innerHTML += tall + " + " ;
+            } else {
+                document.getElementById("hundred").innerHTML += tall + " = " + sum;
+            }
+        }
+        */
+
+        for(let tall = 1; tall <= 100; tall++) {
+            if(tall % 2 === 0) {
+                document.getElementById("seven").innerHTML += tall + ", "
+            }
+        }
         
+
     </script>
 </body>
 </html>
