@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <button>hello</button>
+    <button class="js-button">second button</button>
+
+    <script>
+        document.querySelector('button');
+        document.querySelector('button').innerHTML = 'changed';
+
+        document.querySelector('.js-button').innerHTML = 'yes';
+
+        const buttonElement = document.querySelector('.js-button');
+
+
+
+        /*
+        console.log(document.title);
+        document.title = 'Changed';
+
+        console.log(document.body);
+
+
+       document.body.innerHTML = 'hello';
+       document.title = 'Good job!';*/
+    </script>
+</body>
+</html>

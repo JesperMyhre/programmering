@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 3</title>
+</head>
+<body>
+    <p id="utskrift"></p>
+    <p id="antall-dyr"></p>
+
+    <script>
+        const dyr = [
+            "zebra",
+            "hoggorm",
+            "bjørn",
+            "panther",
+            "elefant",
+            "homoSapiens",
+            "gresshoppe",
+            "sjøpølse",
+            "grillpølse",
+            "kuksluker"
+    ]
+
+        dyr.push("apekatt");
+        dyr.sort();
+
+        let antallDyr = dyr.length;
+
+        document.getElementById("utskrift").innerHTML = dyr;
+        document.getElementById("antall-dyr").innerHTML = `Antall dyr: ${antallDyr}`;
+        console.log(dyr);
+
+    </script>
+</body>
+</html>

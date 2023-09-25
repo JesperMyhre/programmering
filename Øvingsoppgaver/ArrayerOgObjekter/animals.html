@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="utskrift"></p>
+    <p id="setning"></p>
+
+
+    <script>
+        const dyr = [
+            "zebra",
+            "hoggorm",
+            "bjørn",
+            "panther",
+            "elefant",
+            "homo sapiens",
+            "gresshoppe",
+            "sjøpølse",
+            "grillpølse",
+            "kuksluker"
+    ];
+
+        const animals = [
+            "zebra",
+            "snake",
+            "bear",
+            "panther",
+            "elephant",
+            "homo sapiens",
+            "grasshopper",
+            "sea hotdog",
+            "grilled hotdog",
+            "cock sucker"
+        ]
+
+        const utskrift = `Her er det listet opp noen dyr, for eksempel ${dyr[3]} og ${dyr[7]}.`;
+
+        const tekst = `${dyr[2]} er et dyr. Det heter ${animals[2]} på engelsk. ${dyr[6]} er også et dyr. Det heter ${animals[6]} på engelsk.`
+
+        document.getElementById("utskrift").innerHTML = utskrift;
+        document.getElementById("setning").innerHTML = tekst;
+    </script>
+</body>
+</html>
