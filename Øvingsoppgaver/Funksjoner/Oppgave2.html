@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 2</title>
+</head>
+<body>
+  <p id="name"></p>
+  <p id="mail"></p>
+  <p id="age"></p>
+
+  <script>
+    function print(name, mail, birthyear) {
+
+      const ageCalculated = 2023 - birthyear;
+
+      document.getElementById("name").innerHTML = name;
+      document.getElementById("mail").innerHTML = `<a href="mailto:${mail}">${mail}</a>`;
+      document.getElementById("age").innerHTML = ageCalculated;
+    }
+
+    print("Jesper", "jesper.ovreness@gmail.com", 2000);
+  </script>
+</body>
+</html>

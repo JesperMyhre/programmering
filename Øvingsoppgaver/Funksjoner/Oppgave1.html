@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 1</title>
+</head>
+<body>
+    <p id="name"></p>
+    <p id="mail"></p>
+
+    <script>
+        function print() {
+            const name = "Jesper";
+            const mail = "jesper.ovreness@gmail.com"
+
+
+            document.getElementById("name").innerHTML = `Navnet ditt er ${name}.`
+            document.getElementById("mail").innerHTML = `Mail: ${mail}`
+        }
+        print();
+    </script>
+</body>
+</html>

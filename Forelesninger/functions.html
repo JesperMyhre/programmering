@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+<body>
+    <p id="test"></p>
+    <p id="parameterTest"></p>
+
+    <script>
+        function testFunction() {
+            console.log("testFunction kjører");
+            
+            const testing = false;
+
+            if(testing === true) {
+                document.getElementById("test").innerHTML = `Testing er OK!`;
+            } else {
+                document.getElementById("test").innerHTML = `Testing feilet!`
+            }
+        }
+
+        testFunction();
+
+        function alarmClock(day, time) {
+          console.log(day, time);
+
+          if(day !== "saturday" && time === "10:47") {
+            document.getElementById("parameterTest").innerHTML = "Wake up!!"
+          }
+        }
+
+        alarmClock("thursday", "10:47");
+    </script>
+</body>
+</html>

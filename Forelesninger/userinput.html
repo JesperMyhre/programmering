@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User input and actions</title>
+</head>
+<body>
+  <p>
+    <label for="birthyear">Ditt fødselsår</label>
+    <input type="number" id="birthyear"/>
+  </p>
+  
+  <p>
+    <label for="year">Alderen din</label>
+    <input type="number" id="year">
+  </p>
+  <button id="calculateButton" onclick="ageCalculator()">Regn ut alderen din</button>
+
+  <p id="ageText"></p>
+
+  <script>
+
+    function ageCalculator(year = 2023) {
+      const birthyear = document.querySelector(".js-userInput");
+      const age = year - birthyear;
+      let text = "";
+      if(year < 2023) {
+        text = `I ${year} var du ${age} år gammel`
+      } else if(year > 2023) {
+        text = `I ${year} vil du være ${age} år gammel`
+      } else {
+        text = `I år er du ${age} år gammel`
+      }
+      document.getElementById("ageText").innerHTML = text;
+    }
+  </script>
+</body>
+</html>
