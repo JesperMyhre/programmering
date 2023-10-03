@@ -6,7 +6,9 @@
   <title>11k</title>
 </head>
 <body>
+  <div class="utskrift"></div>
   <script>
+    /*
     function countPositive(nums) {
       let result = 0;
 
@@ -19,6 +21,51 @@
     }
 
     console.log(countPositive([1, -3, 5]));
+
+    const shoppingList = [
+      ["Melk", 2],
+      ["Egg", 12],
+      ["Brød", 1],
+      ["Epler", 4],
+      ["Ost", 1]
+    ]
+
+    console.log(shoppingList[4]);
+    console.log(shoppingList[3]);
+    console.log(shoppingList[1][1]);
+    */
+
+    const register = [
+      {
+        name: "Marius Akerbæk",
+        office: "D1-016",
+        email: "toremake@hiof.no",
+        role: "teacher"
+      },
+      {
+        name: "Ivo Eilertsen",
+        office: "Drivhuset",
+        email: "ivo.k.eilertsen@hiof.no",
+        role: "assistant"
+      },
+      {
+        name: "Sander Bjerkevoll",
+        office: "",
+        email: "sander.bjerkevoll@hiof.no",
+        role: "assistant"
+      },
+    ]
+
+    let registerHTML = "";
+
+    register.map((person) => {
+      registerHTML += `
+      <h2>${person.name}</h2>
+      <p>Rolle: ${person.role === "assistant" ? "Studentassistent" : "Faglærer"}. Epost: ${person.email}</p>`
+    });
+    console.log(registerHTML);
+    document.querySelector("utskrift").innerHTML  = registerHTML;
+    
   </script>
 </body>
 </html>
