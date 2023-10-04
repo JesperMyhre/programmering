@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Rock Paper Scissors - Deleksamen 2 - Innføring i Programmering</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+
         :root {
             --darkblue: #006064;
             --black: #2F4858;
@@ -14,6 +16,7 @@
             --green: #006b5e;
             --gray: #4b4737;
         }
+
         body {
             background: var(--darkblue);
             color: white;
@@ -21,6 +24,7 @@
             padding: 0;
             margin: 0;
         }
+
         h1 {
             width: 100%;
             background: var(--lightblue);
@@ -30,17 +34,20 @@
             margin: 0;
             font-size: 3rem;
         }
+
         #gamearea {
             width: 100%;
             max-width: 800px;
             margin: 20px auto;
         }
+
         #playerSigns {
             display: flex;
             justify-content: space-between;
             position: relative;
             min-height: 120px;
         }
+
         #playerSigns button {
             width: 100px;
             height: 100px;
@@ -49,19 +56,26 @@
             border-radius: 15px;
             background: white;
         }
+
         #playerSigns button img {
             width: 100%;
             height: auto;
             transition: transform .2s;
         }
-        #playerSigns button:hover img, #playerSigns button.selectedButton img {
+
+        #playerSigns button:hover img,
+        #playerSigns button.selectedButton img {
             transform: scale(1.7);
         }
+
         #choice {
             display: block;
             color: var(--lightblue);
         }
-        #selection, #computer, #winner {
+
+        #selection,
+        #computer,
+        #winner {
             display: none;
             position: relative;
             clear: both;
@@ -70,7 +84,9 @@
             color: var(--darkblue);
             margin-bottom: 30px;
         }
-        #selection:after, #computer:after {
+
+        #selection:after,
+        #computer:after {
             top: 100%;
             left: 50%;
             border: solid transparent;
@@ -84,36 +100,49 @@
             border-width: 30px;
             margin-left: -30px;
         }
-        .bg-gray, #selection, #computer {
+
+        .bg-gray,
+        #selection,
+        #computer {
             background: var(--gray);
         }
-        .bg-green, #winner {
+
+        .bg-green,
+        #winner {
             background: var(--green);
         }
+
         .choiceAnimate {
             animation: zoom-in-zoom-out .7s ease-in-out;
         }
+
         @keyframes zoom-in-zoom-out {
             0% {
                 transform: scale(1, 1);
             }
+
             25% {
                 transform: scale(1.4, 1.4);
             }
+
             50% {
                 transform: scale(1, 1);
             }
+
             75% {
                 transform: scale(1.2, 1.2);
             }
+
             100% {
                 transform: scale(1, 1);
             }
         }
+
         #counterBox {
             display: flex;
             justify-content: space-between;
         }
+
         #replay {
             background: var(--green);
             color: #fff;
@@ -124,15 +153,19 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Rock • Paper • Scissors</h1>
     <section id="gamearea">
         <div id="playerSigns">
             <h2 id="instruction">Play your hand:<span id="choice"></span></h2>
             <!--Feil 1: play-funksjon skrevet feil-->
-            <button type="button" onClick="play('rock')" id="rockButton" class="playerChoice"><img src="rock.png" alt="Rock" /></button>
-            <button type="button" onClick="play('paper')" id="paperButton" class="playerChoice"><img src="paper.png" alt="Paper" /></button>
-            <button type="button" onClick="play('scissors')" id="scissorsButton" class="playerChoice"><img src="scissors.png" alt="Scissors" /></button>
+            <button type="button" onClick="play('rock')" id="rockButton" class="playerChoice"><img src="rock.png"
+                    alt="Rock" /></button>
+            <button type="button" onClick="play('paper')" id="paperButton" class="playerChoice"><img src="paper.png"
+                    alt="Paper" /></button>
+            <button type="button" onClick="play('scissors')" id="scissorsButton" class="playerChoice"><img
+                    src="scissors.png" alt="Scissors" /></button>
         </div>
         <div id="selection">
             <!-- HTML element to show player selection -->
@@ -144,7 +177,15 @@
             <!-- HTML element to show winner -->
         </div>
         <div id="counterBox">
-            <div>Number of games played: <span id="counter">0</span></div>
+            <div>
+                Number of games played: <span id="counter">0</span>
+                <ul id="score">
+                    <li>Wins: 0</li>
+                    <li>Losses: 0</li>
+                    <li>Ties: 0</li>
+                </ul>
+            </div>
+            <div></div>
             <!-- A hidden button to show after a game, that resets and let the player play again -->
             <button id="replay" onClick="restartGame()">Play again</button>
         </div>
@@ -155,9 +196,15 @@
         let winner = ""
         //And prepare a counter-variable for number of games played:
         let counter = 0
+
+        let score = {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
         //Make available signs available in code as an array
         const signs = ["rock", "paper", "scissors"]
-        
+
         //Find all buttons in the document.
         const buttons = document.querySelectorAll(".playerChoice");
         /* 
@@ -165,16 +212,17 @@
          * On mouseover, show the alt-text of the image inside the button and add animation class
          * On mouseout, remove the text and class
          */
-        buttonss.forEach(button => {
+        //Feil 2: buttons variabel skrevet feil
+        buttons.forEach(button => {
             button.addEventListener("mouseover", (event) => {
                 document.getElementById("choice").innerHTML = button.childNodes[0].alt
-                document.getElementById("choice").setAttribute("class","choiceAnimate")
+                document.getElementById("choice").setAttribute("class", "choiceAnimate")
             })
             button.addEventListener("mouseout", (event) => {
                 document.getElementById("choice").innerHTML = ""
                 document.getElementById("choice").removeAttribute("class")
             })
-            
+
         })
         // Function to run when we click a player sign button ( called play() ).
         // We pass one parameter: "playerSign", which is a text string indicating
@@ -190,8 +238,8 @@
              * this is done by concatinating (combining) the value of sign-parameter with the
              * text-string Button (if sign is rock, the id is rockButton)
              */
-            document.getElementById(playerSign + "Button").setAttribute("class","selectedButton")
-            
+            document.getElementById(playerSign + "Button").setAttribute("class", "selectedButton")
+
             // Next, we need to make a selection for the computer. As we have an array with the choices,
             // we can make a random selection of an index matching the available index in the array
             // (What is an array index? Read https://www.w3schools.com/js/js_arrays.asp)
@@ -200,71 +248,131 @@
             // That means we can create a function that does this for us. So it is done below this function.
             // Now, let's use it to get a random number from 0 (first index of an array) to array.length - 1
             // (maximum index of an array is its length minus 1)
-            const randomIndex = getRandomInt(signs.length - 1)
+            // Feil ??: computer velger ikke scissors om signs.length har -1
+            const randomIndex = getRandomInt(signs.length)
             //Now we can call the random computer selected sign from the signs-array:
             const computerSign = signs[randomIndex]
             //Lets write the computer selection to the console to make sure we have a valid hit:
             console.log("Computer selected: " + computerSign)
             // Good! Now we also have to show this on the website, by making #computer visible and filling it with HTML:
-            const computer = document.getElementByID("computer")
-            
+            // Feil 3: skrivefeil på getElementById
+            const computer = document.getElementById("computer")
+
             computer.style.display = "block"
             /* OPPGAVE 2.1: FORKLAR HVA SOM SKJER PÅ LINJE 208
              * _ditt svar her_ 
+             *SVAR: En variabel som lagrer verdien til "computer" i et div-element med id="computer".
+                    I linjene under blir "kastet" til "computer" lagret i variabelen før det regnes ut hvem som vinner
              */
 
             computer.innerHTML = "Computer selects " + computerSign
             // Ok, now we have to check for rules! Paper beats rock, rock beat scissors, scissors beat paper.
             // This means if players sign beat computer sign, player wins. Lets try:
-            if(playerSign === "paper") {
-                if(computerSign === "rock") {
+            /*
+            if (playerSign === "paper") {
+                if (computerSign === "rock") {
                     winner = "player"
                 }
-                if(computerSign === "scissors") {
+                if (computerSign === "scissors") {
                     winner = "computer"
                 }
-                if(computerSign === "paper") {
+                if (computerSign === "paper") {
                     winner = "undecided"
                 }
             }
-            if(playerSign === "rock") {
-                if(computerSign === "rock") {
+            if (playerSign === "rock") {
+                if (computerSign === "rock") {
                     winner = "undecided"
                 }
-                if(computerSign === "scissors") {
+                if (computerSign === "scissors") {
                     winner = "player"
                 }
-                if(computerSign === "paper") {
+                if (computerSign === "paper") {
                     winner = "computer"
                 }
             }
-            if(playerSign === "scissors") {
-                if(computerSign === "rock") {
+            if (playerSign === "scissors") {
+                if (computerSign === "rock") {
                     winner = "computer"
                 }
-                if(computerSign === "scissors") {
+                if (computerSign === "scissors") {
                     winner = "undecided"
                 }
-                if(computerSign === "paper") {
+                if (computerSign === "paper") {
                     winner = "player"
                 }
+            }*/
+
+            if (playerSign === 'scissors') {
+                if (computerSign === 'rock') {
+                    winner = "computer"
+                } else if (computerSign === 'paper') {
+                    winner = "player"
+                } else if (computerSign === 'scissors') {
+                    winner = "undecided";
+                }
+            } else if (playerSign === 'paper') {
+                if (computerSign === 'rock') {
+                    winner = "player";
+                } else if (computerSign === 'paper') {
+                    winner = "undecided";
+                } else if (computerSign === 'scissors') {
+                    winner = "computer";
+                }
+            } else if (playerSign === 'rock') {
+                if (computerSign === 'rock') {
+                    winner = "undecided";
+                } else if (computerSign === 'paper') {
+                    winner = "computer";
+                } else if (computerSign === 'scissors') {
+                    winner = "player";
+                }
             }
+
             //Now we have checks to set the winner. Let's write it to the website.
             //Now you know the drill: show #winner by display: block and fill it with HTML:
             const winnerDiv = document.getElementById("winner")
+            checkWinner();
             winnerDiv.style.display = "block"
 
-            winnerDiv.innerHTML = "The winner is " + winner
+            function checkWinner() {
+                if (winner === "player") {
+                    winnerDiv.style.backgroundColor = "#FFD700";
+                    winnerDiv.innerHTML = "You win!"
+                    score.wins += 1;
+                } else if (winner === "computer") {
+                    winnerDiv.style.backgroundColor = "red";
+                    winnerDiv.innerHTML = "You lost!"
+                    score.losses += 1;
+                } else {
+                    winnerDiv.style.backgroundColor = "white"
+                    winnerDiv.innerHTML = "It's a tie!"
+                    score.ties += 1;
+                }
+            }
+
+            document.getElementById("score").innerHTML = `
+                <li>Wins: ${score.wins}</li>
+                <li>Losses: ${score.losses}</li>
+                <li>Ties: ${score.ties}</li>
+            `
+
+            //winnerDiv.innerHTML = "The winner is " + winner
             /* OPPGAVE 2.2: FORKLAR HVA SOM SKJER PÅ LINJE 254
-             * _ditt svar her_ 
+             * SVAR: winnerDiv blir gjort synlig fordi displayverdien gjøres om fra "none" til "block"
              */
 
             //Now, lastly, let's update the counter on how many games we have played:
-            counter = counter + 1
+            counter++;
 
-            document.getElementById("counter").innerHTML = counter
+            document.getElementById("counter").innerHTML = counter;
+
+            if (counter > 0) {
+                const counterElement = document.getElementById("counter");
+                counterElement.style.color = "#00bcd4";
+            }
             /* OPPGAVE 2.3: FORKLAR HVA SOM SKJER PÅ LINJE 262
-             * _ditt svar her_ 
+             * _ditt svar her_ SVAR: hver gang play funksjonen kjører, blir "1" lagt til i "counter"-variabelen
              */
 
             //And display the button for playing again:
@@ -290,10 +398,11 @@
         }
 
         //Function for random numnber, fetched from MDN web docs:
-        //Feil X: skrivefeil
+        //Feil 4: skrivefeil på function
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
     </script>
 </body>
+
 </html>
