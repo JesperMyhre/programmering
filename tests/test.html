@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Count and Sum Values in an Array of Objects</title>
+</head>
+
+<body>
+  <h1>Count and Sum Values in an Array of Objects</h1>
+  <p>Array of Objects: <span id="array"></span></p>
+  <p>Count: <span id="count"></span></p>
+  <p>Sum: <span id="sum"></span></p>
+
+  <script>
+    // Sample array of objects
+    const arrayOfObjects = [
+      { value: 10 },
+      { value: 20 },
+      { value: 30 },
+      { value: 40 },
+    ];
+
+    // Get references to the HTML elements
+    const arrayElement = document.getElementById('array');
+    const countElement = document.getElementById('count');
+    const sumElement = document.getElementById('sum');
+
+    // Display the original array of objects
+    arrayElement.textContent = JSON.stringify(arrayOfObjects);
+
+    // Count the objects and calculate the sum of 'value' properties
+    const count = arrayOfObjects.length;
+    const sum = arrayOfObjects.reduce((accumulator, currentObject) => accumulator + currentObject.value, 0);
+
+    // Display the count and sum in the HTML elements
+    countElement.textContent = count;
+    sumElement.textContent = sum;
+  </script>
+</body>
+
+</html>
