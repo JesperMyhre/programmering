@@ -26,8 +26,8 @@
         </section>
         <img src="icons/c3_logo.svg" alt="Code Concept Collector" />
         <nav>
-            <button id="notebookToggler" onclick="toggleVisibility('notebook')"><img src="icons/notebook.svg" />Åpne kladdeboka <span class="shortcut ">n</span></button>
-            <button id="infoToggler" onclick="toggleVisibility('info')">Info / Hvordan spille <span class="shortcut">i</span></button>
+            <button id="notebookToggler" ><img src="icons/notebook.svg" />Åpne kladdeboka <span class="shortcut ">n</span></button>
+            <button id="infoToggler" click="toggleVisibility('info')">Info / Hvordan spille <span class="shortcut">i</span></button>
         </nav>
     </header>
     <main>
@@ -129,16 +129,19 @@
             element.classList.add('hidden');
             element.style.display = 'none';
           }
-          console.log("test")
         }
 
-        document.addEventListener("keydown", event);
-
+        
+        document.addEventListener("keydown", addEventListener);
         function addEventListener(event) {
-          if(event === 'n') {
-            console.log("Jippi!")
-          }
+            if(event.key === 'n') {
+                toggleVisibility('notebook');
+            } else if(event.key === 'i') {
+                toggleVisibility('info');
+            }
         }
+        
+        
         
     </script>
 </body>
