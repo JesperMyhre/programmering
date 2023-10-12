@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <p class="js-calculation"></p>
+
   <div class="main-grid">
     <p>
         <button onclick="
@@ -89,10 +91,11 @@
             console.log('Cleared!');
             saveCalculation();
         " class="button">Clear</button>
+
+        <button onclick="
+          displayHistory();
+        " class="button">History</button>
 </div>
-
-
-        <p class="js-calculation"></p>
 
     <script src="../../Scripts/10i.js"></script>
 </body>

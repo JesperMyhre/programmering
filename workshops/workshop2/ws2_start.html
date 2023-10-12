@@ -27,12 +27,12 @@
         <img src="icons/c3_logo.svg" alt="Code Concept Collector" />
         <nav>
             <button id="notebookToggler" ><img src="icons/notebook.svg" />Åpne kladdeboka <span class="shortcut ">n</span></button>
-            <button id="infoToggler" click="toggleVisibility('info')">Info / Hvordan spille <span class="shortcut">i</span></button>
+            <button id="infoToggler">Info / Hvordan spille <span class="shortcut">i</span></button>
         </nav>
     </header>
     <main>
         
-        <section id="notebook">
+        <section id="notebook" class="hideable">
             <div id="notebook-page">
                 
                 <h2>Notater</h2>
@@ -62,7 +62,7 @@
                 </table>
             </div>
         </section>
-        <section id="info" class="hidden">
+        <section id="info" class="hidden hideable">
             <div id="info-page">
                 <h2>Info / Hvordan spille C<sup>3</sup></h2>
                 <p>Målet med spiller er at programmeringsstudenten Fortran <span class="illustration">(<img src="icons/fortran.svg" />)</span> skal samle programmeringskonseptene variabler <span class="illustration">(<img src="icons/variable.svg" />)</span>, arrayer <span class="illustration">(<img src="icons/array.svg" />)</span>, løkker <span class="illustration">(<img src="icons/loop.svg" />)</span> og funksjoner <span class="illustration">(<img src="icons/function.svg" />)</span> i kladdeboka <span class="illustration">(<img src="icons/notebook.svg" />)</span> si.</p>
@@ -115,12 +115,42 @@
             document.getElementById("functions").innerHTML = notebook.functions
         }
 
+        //Funksjon for å skrive ut oppdateringer til et element:
+        function updateSingleStaticUI(elementid, value) {
+          document.getElementById(elementid).innerHTML = value
+        }
+
         //Kjøre (kalle) funksjonen for utskrift:
         updateStaticUI()
 
+        //Testkjøring av funksjon for å oppdatere ett element:
+        updateSingleStaticUI("playerName", "TESTNAVN");
 
+
+        //Funksjon som viser og skjuler elementene
         function toggleVisibility(elementid){
+          //Finne alle elementer som kan påvirkes (.hideable)
+          const hideables = document.querySelectorAll(".hideable");
+          console.log(hideables);
+          /*hideables.map((hideable) => {
+            hideable.style.display = "none";
+          })*/
+          for(let index = 0; index < hideables.length; index++) {
+            hideables[index].style.display = "none";
+          }
+
           const element = document.getElementById(elementid);
+          if(element.classList.contains("hidden")) {
+            element.style.display = "block";
+            element.classList.remove("hidden");
+          } else {
+            element.style.display = "none";
+            element.classList.add("hidden")
+          }
+
+          /*
+          const element = document.getElementById(elementid);
+          //deToggleWindow();
 
           if(element.classList.contains('hidden')) {
             element.classList.remove('hidden');
@@ -129,19 +159,27 @@
             element.classList.add('hidden');
             element.style.display = 'none';
           }
+          */
         }
 
+        //Lytte etter tastaturtrykk
+        document.addEventListener("keydown", function(event) {
+          //Sjekke om tasten som er trykket er "N":
+          if(event.key === "n") {
+            toggleVisibility("notebook");
+          //Sjekke om tasten som er trykket er "I";
+          } else if (event.key === "i") {
+            toggleVisibility("info");
+          }
+        });
         
-        document.addEventListener("keydown", addEventListener);
-        function addEventListener(event) {
-            if(event.key === 'n') {
-                toggleVisibility('notebook');
-            } else if(event.key === 'i') {
-                toggleVisibility('info');
-            }
-        }
-        
-        
+        //Lytte etter klikk på notebook- og info-knappene
+        document.getElementById("notebookToggler").addEventListener("click", function(event) {
+          toggleVisibility("notebook")
+        });
+        document.getElementById("infoToggler").addEventListener("click", function(event) {
+          toggleVisibility("info")
+        });
         
     </script>
 </body>

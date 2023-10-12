@@ -11,6 +11,7 @@ body {
   border-radius: 100px;
   font-size: 20px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .button {
@@ -19,4 +20,9 @@ body {
 
 .special-button {
   background-color: orange;
+}
+
+.js-calculation {
+  color: white;
+  font-size: 24px;
 }
