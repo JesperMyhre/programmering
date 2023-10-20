@@ -260,8 +260,7 @@
 
             computer.style.display = "block"
             /* OPPGAVE 2.1: FORKLAR HVA SOM SKJER PÅ LINJE 208
-             * _ditt svar her_ 
-             *SVAR: En variabel som lagrer verdien til "computer" i et div-element med id="computer".
+             * SVAR: En variabel som lagrer verdien til "computer" i et div-element med id="computer".
                     I linjene under blir "kastet" til "computer" lagret i variabelen før det regnes ut hvem som vinner
              */
 
@@ -328,12 +327,13 @@
                     winner = "player";
                 }
             }
+            
 
             //Now we have checks to set the winner. Let's write it to the website.
             //Now you know the drill: show #winner by display: block and fill it with HTML:
             const winnerDiv = document.getElementById("winner")
             checkWinner();
-            winnerDiv.style.display = "block"
+            winnerDiv.style.display = "block";
 
             function checkWinner() {
                 if (winner === "player") {
@@ -350,6 +350,7 @@
                     score.ties += 1;
                 }
             }
+
 
             document.getElementById("score").innerHTML = `
                 <li>Wins: ${score.wins}</li>
@@ -372,7 +373,7 @@
                 counterElement.style.color = "#00bcd4";
             }
             /* OPPGAVE 2.3: FORKLAR HVA SOM SKJER PÅ LINJE 262
-             * _ditt svar her_ SVAR: hver gang play funksjonen kjører, blir "1" lagt til i "counter"-variabelen
+             * SVAR: hver gang play funksjonen kjører, blir "1" lagt til i "counter"-variabelen
              */
 
             //And display the button for playing again:
