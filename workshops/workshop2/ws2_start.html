@@ -163,7 +163,7 @@
         }
 
         //Lytte etter tastaturtrykk
-        document.addEventListener("keydown", function(event) {
+        document.addEventListener("keydown", function(event){
           //Sjekke om tasten som er trykket er "N":
           if(event.key === "n") {
             toggleVisibility("notebook");
@@ -180,6 +180,119 @@
         document.getElementById("infoToggler").addEventListener("click", function(event) {
           toggleVisibility("info")
         });
+
+        const hero = {
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          speed: 5,
+          normalSpeed: 5,
+          boostSpeed: 10,
+          width: 50,
+          height: 50
+        }
+
+        function randomMinMax(min, max) {
+          return Math.floor(Math.random() + (max - min + 1) + min)
+        }
+
+        const enemy = {
+          x: randomMinMax(50, canvas.width - 100),
+          y: randomMinMax(50, canvas.height - 100),
+          width: 50,
+          height: 50,
+        }
+
+        let left = false;
+        let right = false;
+        let up = false;
+        let down = false;
+
+        document.addEventListener("keydown", function(event) {
+          if(event.key === "w") {
+            up = true;
+          }
+          if(event.key === "a") {
+            left = true;
+          }
+          if(event.key === "s") {
+            down = true;
+          }
+          if(event.key === "d") {
+            right = true;
+          }
+          if(event.kay === "+") {
+            hero.speed = hero.boostSpeed;
+          }
+        });
+
+        document.addEventListener("keyup", function(event) {
+          event.key === "w" ? up = false : null;
+          event.key === "a" ? left = false : null;
+          event.key === "s" ? down = false : null;
+          event.key === "d" ? right = false : null;
+          event.key === "+" ? hero.speed = hero.normalSpeed : null;
+        })
+
+        function renderFrames() {
+          //Tegne hele canvaset
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          //Tegne fiende-kvadrat
+          ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+          //Teste kollisjon mot høyre side
+          if(hero.x + hero.width >= canvas.width) {
+            right = false
+          }
+          //Teste kollisjon mot venstre side
+          if(hero.x <= 0) {
+            left = false;
+          }
+          //Teste sjekke om hero er utenfor bunnen
+          if(hero.y >= canvas.height && down) {
+            hero.y = -hero.height
+          }
+          //Sjekke om hero er utenfor toppen
+          if(hero.y + hero.height <= 0 && up) {
+            hero.y = canvas.height
+          }
+          //Deaktivere boost når vi nesten når canvas-veggene
+          if(
+              hero.x + hero.width > canvas.width - hero.boostSpeed ||
+              hero.x < hero.boostSpeed
+            ){
+              hero.speed = hero.normalSpeed
+          } 
+          //Tegne elementene i en bilderamme
+          ctx.drawImage(heroImage, hero.x, hero.width, hero.height);
+          //sjekk etter retningsforandring
+          if(left === true) {
+            hero.x = hero.x = hero.speed
+          }
+          if(right === true) {
+            hero.x = hero.x = hero.speed
+          }          
+          if(up === true) {
+            hero.y = hero.x = hero.speed
+          }
+          if(down === true) {
+            hero.y = hero.x = hero.speed
+          }
+
+          //Sjekk for kollisjon mellom helt og kvadrat
+          if(
+            hero.x + hero.width > enemy.x && 
+            hero.x < enemy.x + enemy.width && 
+            hero.y + hero.height > enemy.y &&
+            hero.y < enemy.y + enemy.height
+            ){
+              enemy.x = randomMinMax(50, canvas.width - 100,
+              enemy.y = randomMinMax(50, canvas.height - 100))
+            }
+            
+            requestAnimationFrame(renderFrames);
+        }
+
+        //Start animasjon
+        renderFrames();
         
     </script>
 </body>
