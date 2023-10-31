@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karakterkalkulator</title>
+</head>
+<body>
+  <h1>Karakterkalkulator</h1>
+  <p>Oppgave 1: <input id="oppgave1" type="number"></p>
+  <p>Oppgave 2: <input id="oppgave2" type="number"></p>
+  <p>Oppgave 3: <input id="oppgave3" type="number"></p>
+
+  <button onclick="calculate()">Send inn resultat</button>
+
+  <p id="result"></p>
+  <p id="karakterResult"></p>
+
+  <script>
+    function calculate() {
+      const oppgave1 = document.getElementById("oppgave1").value
+      const oppgave2 = document.getElementById("oppgave2").value
+      const oppgave3 = document.getElementById("oppgave3").value
+
+      const totalPercent = (0.2 * (oppgave1 / 10 * 100)) + (0.3 * (oppgave2 / 12 * 100)) + (0.5 * (oppgave3 / 18 * 100));
+      console.log(totalPercent);
+
+      document.getElementById("result").innerHTML = `Poeng: ${totalPercent.toFixed(2)}%`;
+
+      let grade = "F";
+
+      if(totalPercent >= 25 && totalPercent < 44) {
+        grade = "E"
+      } else if(totalPercent >= 45 && totalPercent < 68) {
+        grade = "D"
+      } else if(totalPercent >= 69 && totalPercent < 88) {
+        grade = "C"
+      } else if(totalPercent >= 89 && totalPercent < 99) {
+        grade = "B"
+      } else if(totalPercent = 100) {
+        grade = "A"
+      }
+
+      document.getElementById("karakterResult").innerHTML = `Karakter: ${grade}`
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karakterkalkulator</title>
+</head>
+<body>
+  <h1>Karakterkalkulator</h1>
+  <input type="number" class="karakterFelt1" placeholder="Poeng oppgave 1" min="0" max="10">
+  <input type="number" class="karakterFelt2" placeholder="Poeng oppgave 2" min="0" max="12">
+  <input type="number" class="karakterFelt3" placeholder="Poeng oppgave 3" min="0" max="18">
+
+  <button onclick="
+    karakterKalk();
+  ">Regn ut</button>
+
+    <ul id="utskrift">
+    </ul>
+
+
+  <script>
+    function karakterKalk() {
+      const inputElement1 = document.querySelector('.karakterFelt1');
+      const inputElement2 = document.querySelector('.karakterFelt2');
+      const inputElement3 = document.querySelector('.karakterFelt3');
+      let vekt1 = Number(inputElement1.value / 10 * 100);
+      let vekt2 = Number(inputElement2.value / 12 * 100);
+      let vekt3 = Number(inputElement3.value / 18 * 100);
+
+      console.log(vekt1, vekt2)
+
+      /*
+      if(inputElement1.max > 10) {
+        console.log("Feilmelding: Oppgave 1 kan ikke ha mer enn 10 poeng")
+      }
+      */
+
+    }
+  </script>
+</body>
+</html>

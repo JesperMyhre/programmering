@@ -155,7 +155,7 @@
 </head>
 
 <body>
-    <h1>Rock • Paper • Scissors</h1>
+    <h1>Rock • Paper • Scissors • Nerf!</h1>
     <section id="gamearea">
         <div id="playerSigns">
             <h2 id="instruction">Play your hand:<span id="choice"></span></h2>
@@ -166,6 +166,8 @@
                     alt="Paper" /></button>
             <button type="button" onClick="play('scissors')" id="scissorsButton" class="playerChoice"><img
                     src="scissors.png" alt="Scissors" /></button>
+            <button type="button" onClick="play('nerf')" id="nerfButton" class="playerChoice"><img
+                    src="nerfgun.png" alt="Nerf gun" /></button>
         </div>
         <div id="selection">
             <!-- HTML element to show player selection -->
@@ -203,7 +205,7 @@
             ties: 0
         };
         //Make available signs available in code as an array
-        const signs = ["rock", "paper", "scissors"]
+        const signs = ["rock", "paper", "scissors", "nerf"]
 
         //Find all buttons in the document.
         const buttons = document.querySelectorAll(".playerChoice");
@@ -212,7 +214,7 @@
          * On mouseover, show the alt-text of the image inside the button and add animation class
          * On mouseout, remove the text and class
          */
-        //Feil 2: buttons variabel skrevet feil
+        //Feil 2: buttons skrevet feil
         buttons.forEach(button => {
             button.addEventListener("mouseover", (event) => {
                 document.getElementById("choice").innerHTML = button.childNodes[0].alt
@@ -248,8 +250,10 @@
             // That means we can create a function that does this for us. So it is done below this function.
             // Now, let's use it to get a random number from 0 (first index of an array) to array.length - 1
             // (maximum index of an array is its length minus 1)
+
             // Feil ??: computer velger ikke scissors om signs.length har -1
             const randomIndex = getRandomInt(signs.length)
+
             //Now we can call the random computer selected sign from the signs-array:
             const computerSign = signs[randomIndex]
             //Lets write the computer selection to the console to make sure we have a valid hit:
@@ -261,47 +265,13 @@
             computer.style.display = "block"
             /* OPPGAVE 2.1: FORKLAR HVA SOM SKJER PÅ LINJE 208
              * SVAR: En variabel som lagrer verdien til "computer" i et div-element med id="computer".
-                    I linjene under blir "kastet" til "computer" lagret i variabelen før det regnes ut hvem som vinner
+                    I linjene under blir datamaskinens tegn lagret i variabelen før det regnes ut hvem som vinner
              */
 
             computer.innerHTML = "Computer selects " + computerSign
             // Ok, now we have to check for rules! Paper beats rock, rock beat scissors, scissors beat paper.
             // This means if players sign beat computer sign, player wins. Lets try:
-            /*
-            if (playerSign === "paper") {
-                if (computerSign === "rock") {
-                    winner = "player"
-                }
-                if (computerSign === "scissors") {
-                    winner = "computer"
-                }
-                if (computerSign === "paper") {
-                    winner = "undecided"
-                }
-            }
-            if (playerSign === "rock") {
-                if (computerSign === "rock") {
-                    winner = "undecided"
-                }
-                if (computerSign === "scissors") {
-                    winner = "player"
-                }
-                if (computerSign === "paper") {
-                    winner = "computer"
-                }
-            }
-            if (playerSign === "scissors") {
-                if (computerSign === "rock") {
-                    winner = "computer"
-                }
-                if (computerSign === "scissors") {
-                    winner = "undecided"
-                }
-                if (computerSign === "paper") {
-                    winner = "player"
-                }
-            }*/
-
+           
             if (playerSign === 'scissors') {
                 if (computerSign === 'rock') {
                     winner = "computer"
@@ -309,6 +279,8 @@
                     winner = "player"
                 } else if (computerSign === 'scissors') {
                     winner = "undecided";
+                } else if (computerSign === 'nerf') {
+                    winner = "computer";
                 }
             } else if (playerSign === 'paper') {
                 if (computerSign === 'rock') {
@@ -317,6 +289,8 @@
                     winner = "undecided";
                 } else if (computerSign === 'scissors') {
                     winner = "computer";
+                } else if (computerSign === 'nerf') {
+                    winner = "player";
                 }
             } else if (playerSign === 'rock') {
                 if (computerSign === 'rock') {
@@ -325,8 +299,20 @@
                     winner = "computer";
                 } else if (computerSign === 'scissors') {
                     winner = "player";
+                } else if (computerSign === 'nerf') {
+                    winner = "player";
                 }
-            }
+            } else if (playerSign === 'nerf') {
+                if (computerSign === 'rock') {
+                    winner = "computer";
+                } else if (computerSign === 'paper') {
+                    winner = "player";
+                } else if (computerSign === 'scissors') {
+                    winner = "player";
+                } else if (computerSign === 'nerf') {
+                    winner = "undecided";
+                }
+              }
             
 
             //Now we have checks to set the winner. Let's write it to the website.
