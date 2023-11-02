@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 2</title>
+</head>
+<body>
+  <input type="number" class="js-age-input">
+  <button onclick="ageCheck()">Regn ut</button>
+  <p id="utskrift"></p>
+  <script>
+    let utskrift = "";
+
+    function ageCheck() {
+      let age = document.querySelector('.js-age-input').value;
+
+      if(age < 18) {
+        utskrift = "Du er ikke myndig";
+      } else if (age >= 18 && age <= 62) {
+        utskrift = "Du er myndig og klar for studier eller arbeidslivet";
+      } else {
+        utskrift = "Du er pensjonsklar";
+      }
+
+      document.getElementById("utskrift").innerHTML = utskrift;
+    }
+
+
+  </script>
+</body>
+</html>

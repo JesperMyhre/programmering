@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 2</title>
+</head>
+<body>
+  <p id="utskrift"></p>
+  <p id="setning"></p>
+  <script>
+  const dyr = [
+  "pingvin",
+  "jaguar",
+  "mygg",
+  "hest",
+  "katt",
+  "hund",
+  "slange",
+  "veps",
+  "ku",
+  "geit"
+];
+
+  const animals = [
+    "penguin",
+    "jaguar",
+    "mosquito",
+    "horse",
+    "cat",
+    "dog",
+    "snake",
+    "hornet",
+    "cow",
+    "goat"
+  ];
+
+  const tekst = `${dyr[4]} er et dyr. Det heter ${animals[4]} på engelsk. ${dyr[8]} er også et dyr. Det heter ${animals[8]} på engelsk.`
+
+  document.getElementById("utskrift").innerHTML = `Her er det listet opp noen dyr, for eksempel ${dyr[3]} og ${dyr[7]}`
+  document.getElementById("setning").innerHTML = tekst;
+  </script>
+</body>
+</html>

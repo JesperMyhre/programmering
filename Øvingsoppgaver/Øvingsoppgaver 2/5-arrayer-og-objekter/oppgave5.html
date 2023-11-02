@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events</title>
+</head>
+<body>
+  <ul id="events"></ul>
+  <script>
+    const events1 = [
+      [1969, "The creating of ARPANET"],
+      [1971, "The first email is sent"],
+      [1981, "IBM launches a PC"],
+      [1990, "Tim Berners Lee launches the first website"],
+      [1998, "Google was founded"]
+    ];
+    const events = [
+      {
+        year: 1969,
+        event: "The creating of ARPANET"
+      },
+      {
+        year: 1971,
+        event: "The first email is sent"
+      },
+      {
+        year: 1981,
+        event: "IBM launches a PC"
+      },
+      {
+        year: 1990,
+        event: "Tim Berners Lee launches the first website"
+      },
+      {
+        year: 1998,
+        event: "Google was founded"
+      },
+    ];
+
+    let eventListHTML = "";
+
+    events.map( (events) => {
+      eventListHTML += `<li>${events.year}: ${events.event}`
+    });
+
+    document.getElementById("events").innerHTML = eventListHTML;
+  </script>
+</body>
+</html>

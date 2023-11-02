@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" class="js-name-input">
+  <button onclick="nameCheck()">Send inn</button>
+  <p id="utskrift"></p>
+
+  <script>
+    let utskrift = "";
+    function nameCheck() {
+      let name = document.querySelector('.js-name-input').value;
+
+      if(name === "Jesper Myhre") {
+        utskrift = `Mitt navn er ${name}`
+      } else {
+        utskrift = `Mitt navn er ikke ${name}`
+      }
+
+      document.getElementById("utskrift").innerHTML = utskrift;
+  }
+
+  </script>
+</body>
+</html>
