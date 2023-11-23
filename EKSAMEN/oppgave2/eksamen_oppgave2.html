@@ -10,8 +10,8 @@
     <main>
         <nav>
             <h2>Controls</h2>
-            <p><span class="buttonIllustration" id="sbutton" onClick="draw('square')">S</span> Add a square</p>
-            <p><span class="buttonIllustration" id="cbutton" onClick="draw('circle')">C</span> Add a circle</p>
+            <p><span class="buttonIllustration" id="sbutton" onClick="renderDrawings('square')">S</span> Add a square</p>
+            <p><span class="buttonIllustration" id="cbutton" onClick="renderDrawings('circle')">C</span> Add a circle</p>
             <p><span class="buttonIllustration" id="rbutton">R</span> Remove random element</p>
             <h2>Number of elements</h2>
             <ul>
@@ -38,37 +38,60 @@
         ]
 
         //TODO: Function to add an element of parameter type 'square' or 'circle':
-        function draw(value) {
-            if(value === "square") {
-                ctx.beginPath();
-                ctx.rect(20, 20, 8, 8);
-                ctx.fillStyle = "blue";
-                ctx.fill();
-            } else if(value === "circle") {
-                ctx.beginPath();
-                ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-                ctx.fillStyle = "yellow";
-                ctx.fill();
-            }
-        }
-        
+        function drawElements(value) {
+
+        };
 
         //TODO: Function to remove random element:
         
 
         //TODO: EventListeners to track user input:
-
+        document.addEventListener("keydown", function(event) {
+          if(event.key === "s") {
+            renderDrawings("square");
+          };
+          if(event.key === "c") {
+            renderDrawings("circle");
+          }
+        })
 
         //TODO: Count the element types and total and print to interface
+        function countElements() {
+          let elementCounter = 0;
+          let squareCounter = 0;
+          let circleCounter = 0;
 
+          if(elements.type === "square"){
+            elementCounter++;
+            squareCounter++;
+          } else if (elements.type === "circle") {
+            elementCounter++;
+            circleCounter++;
+          }
+          document.getElementById("squareCount").innerHTML = squareCounter;
+          document.getElementById("circleCount").innerHTML = circleCounter;
+          document.getElementById("totalCount").innerHTML = elementCounter;
+        }
         
         //Function to draw on canvas:
-        function renderDrawings() {
+        function renderDrawings(shape) {
             //Clear the rectangle
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
             //TODO: Draw the elements on canvas:
-
+            if(shape === "square") {
+                ctx.beginPath();
+                ctx.rect(20, 20, 8, 8);
+                ctx.fillStyle = "lightblue";
+                ctx.fill();
+                ctx.closePath();
+            } else if(shape === "circle") {
+                ctx.beginPath();
+                ctx.arc(95, 50, 8, 0, 2 * Math.PI);
+                ctx.fillStyle = "yellow";
+                ctx.fill();
+                ctx.closePath();
+            }
 
             //Testprint:
             console.log("Currently drawing frames...")

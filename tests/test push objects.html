@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a = [
+      {a: 1, b: 2, c: 3}
+    ];
+    a.push(1, 2, 3);
+
+    console.log(a)
+
+    var arr = [1];
+    var newItems = [2, 3];
+    arr.push(...newItems);
+    console.log(arr);
+  </script>
+</body>
+</html>

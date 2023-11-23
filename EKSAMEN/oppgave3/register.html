@@ -1,82 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff register</title>
-    <link href="style.css" rel="stylesheet" media="screen" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff register</title>
+  <link href="style.css" rel="stylesheet" media="screen" />
 </head>
+
 <body>
-    <header>
-        <h1>Staff Register</h1>
-    </header>
-    <main>
-        <section id="list">
-            <nav id="filter">
-                <p>Filter on position:</p>
-                <ul id="positionFilter">
-                    <li><button class="all active">All positions</button></li>
-                </ul>
-            </nav>
-            <h2 id="listHeader">Showing all Staff</h2>
-            <div id="staffList">
-                
-            </div>
-        </section>
-        <section id="admin">
-            <div class="form">
-                <h2>Add staff</h2>
-                <p>
-                    <label for="firstname">Firstname</label>
-                    <input type="text" name="firstname" id="firstname" placeholder="Firstname" />
-                </p>
-                <p>
-                    <label for="lastname">Lastname</label>
-                    <input type="text" name="lastname" id="lastname" placeholder="Lastname" /></p>
-                <p>
-                    <label for="position">Position</label>
-                    <select id="position" name="postition">
-                       
-                    </select>
-                </p>
-                <p>
-                    <label for="department">Department</label>
-                    <select id="department" name="department">
-                        
-                    </select>
-                </p>
-                <p>
-                    <label for="email">Email address</label><input type="email" name="email" id="email" placeholder="you@email.com" /></select>
-                </p>
-                <button id="saveStaff">Save staff member</button>
-            </div>
-            <div class="form">
-                <h2>Add position</h2>
-                <p>
-                    <label for="newPosition">Position</label><input type="text" name="newPosition" id="newPosition" placeholder="Position" />
-                </p>
-                <button id="savePosition" onClick="newPosition()">Save new position</button>
-            </div>
-            <div class="form">
-                <h2>Add department</h2>
-                <p>
-                    <label for="newDepartment">Department</label><input type="text" name="newDepartment" id="newDepartment" placeholder="Department" />
-                </p>
-                <button id="saveDepartment">Save new department</button>
-            </div>
-        </section>
-    </main>
-    <script>
-        //Array of staff objects
-        const staff = [
-            {firstname: "Bill", lastname: "Gates", position: "Director", department: "Administration", email: "bill@gates.net"},
-        ]
+  <header>
+    <h1>Staff Register</h1>
+  </header>
+  <main>
+    <section id="list">
+      <nav id="filter">
+        <p>Filter on position:</p>
+        <ul id="positionFilter">
+          <li><button class="all active">All positions</button></li>
+        </ul>
+      </nav>
+      <h2 id="listHeader">Showing all Staff</h2>
+      <div id="staffList">
 
-        //Array of available positions
-        const positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
+      </div>
+    </section>
+    <section id="admin">
+      <div class="form">
+        <h2>Add staff</h2>
+        <p>
+          <label for="firstname">Firstname</label>
+          <input type="text" name="firstname" id="firstname" placeholder="Firstname"/>
+        </p>
+        <p>
+          <label for="lastname">Lastname</label>
+          <input type="text" name="lastname" id="lastname" placeholder="Lastname"/>
+        </p>
+        <p>
+          <label for="position">Position</label>
+          <select id="position" name="postition">
+          </select>
+        </p>
+        <p>
+          <label for="department">Department</label>
+          <select id="department" name="department">
+          </select>
+        </p>
+        <p>
+          <label for="email">Email address</label><input type="email" name="email" id="email"
+            placeholder="you@email.com" /></select>
+        </p>
+        <button id="saveStaff" onClick="addStaff()">Save staff member</button>
+      </div>
+      <div class="form">
+        <h2>Add position</h2>
+        <p>
+          <label for="newPosition">Position</label><input type="text" name="newPosition" id="newPosition"
+            placeholder="Position"/>
+        </p>
+        <button id="savePosition" onClick="newPosition()">Save new position</button>
+      </div>
+      <div class="form">
+        <h2>Add department</h2>
+        <p>
+          <label for="newDepartment">Department</label><input type="text" name="newDepartment" id="newDepartment"
+            placeholder="Department" />
+        </p>
+        <!--Lagt til onclick attribute-->
+        <button id="saveDepartment" onClick="newDepartment()">Save new department</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    //Array of staff objects
+    const staff = [
+      { firstname: "Bill", lastname: "Gates", position: "Director", department: "Administration", email: "bill@gates.net" },
+    ]
+    
+    //funksjon som henter alle veridene fra HTML-skjema og bygger en ny array som slås sammen med staff arrayen
+    function addStaff() {
+      //Henter ut verdiene fra inputfeltene
+      let firstNameInput = document.getElementById("firstname").value;
+      let lastNameInput = document.getElementById("lastname").value;
+      let emailInput = document.getElementById("email").value;
+      let positionInput = document.getElementById("position").value
+      let departmentInput = document.getElementById("department").value
+      //lager ny array med input til brukeren, og slår den sammen med staff arrayen
+      const newStaff = [
+        {firstname: firstNameInput, lastname: lastNameInput, position: positionInput, department: departmentInput, email: emailInput}
+      ];
 
-        //Array of available departments
-        const departments = ["Administration", "Human Resources", "Production", "Finances"]
-    </script>
+      staff.push.apply(staff, newStaff);
+      loadInfo();
+    }
+
+    //Array of available positions
+    //Legger til "Select position" som default value (FJERNES? MULIG DÅRLIG LØSNING)
+    const positions = ["Select Position", "Director", "Team leader", "Producer", "Engineer", "Designer"]
+
+    function newPosition() {
+      let inputElement = document.getElementById("newPosition").value;
+      
+      positions.push(inputElement);
+
+      loadInfo();
+    }
+
+    //Array of available departments
+    //Legger til "Select department" som default value (FJERNES? MULIG DÅRLIG LØSNING)
+    const departments = ["Select Department", "Administration", "Human Resources", "Production", "Finances"]
+
+    function newDepartment() {
+      let inputElement = document.getElementById("newDepartment").value;
+
+      departments.push(inputElement);
+
+      loadInfo();
+    }
+
+    //funksjon for å loade/bygge html-struktur når siden lastes og oppdatere når endringer blir gjort
+    function loadInfo() {
+      let staffCard = "";
+      //.map() funksjon for å bygge liste over ansatte
+      staff.map(
+        (person) => {
+          staffCard += `
+          <article class="membercard">
+            <h3>${person.firstname} ${person.lastname}</h3>
+            <p class="metainfo">
+              <img src="posicon.png"> ${person.position}
+              <img src="depicon.png"> ${person.department}
+            </p>
+            <p>
+              <a href="mailto:${person.email}">
+                <img src="mailicon.png">
+                Send mail to ${person.firstname}
+              </a>
+            </article>
+          `
+        })
+        document.getElementById("staffList").innerHTML = staffCard;
+
+        //.map() funksjon for å bygge departementliste i HTML-skjema fra array
+        let departmentList = "";
+        departments.map(
+          department => { departmentList += `<option value="${department}">${department}</option>` }
+        );
+        document.getElementById("department").innerHTML = departmentList;
+
+        //.map() funksjon for å bygge arbeidsposisjonsliste i HTML-skjema fra array
+        let positionsList = "";
+        positions.map(
+          position => { positionsList += `<option value="${position}">${position}</option>` }
+        );
+        document.getElementById("position").innerHTML = positionsList;
+    }
+    loadInfo();
+  </script>
 </body>
+
 </html>
