@@ -10,14 +10,17 @@
     <main>
         <nav>
             <h2>Controls</h2>
-            <p><span class="buttonIllustration" id="sbutton" onClick="renderDrawings('square')">S</span> Add a square</p>
-            <p><span class="buttonIllustration" id="cbutton" onClick="renderDrawings('circle')">C</span> Add a circle</p>
-            <p><span class="buttonIllustration" id="rbutton">R</span> Remove random element</p>
+            <p><span class="buttonIllustration" id="sbutton" onClick="addElement('square')">S</span> Add a square</p>
+            <p><span class="buttonIllustration" id="cbutton" onClick="addElement('circle')">C</span> Add a circle</p>
+            <p><span class="buttonIllustration" id="rbutton" onClick="removeElement()">R</span> Remove random element</p>
             <h2>Number of elements</h2>
             <ul>
                 <li>Squares: <span id="squareCount">0</span></li>
                 <li>Circles: <span id="circleCount">0</span></li>
                 <li>Total: <span id="totalCount">0</span></li>
+                <!--Listelementer for teller og elementgjennomsnitt-->
+                <li>Timer: <span id="timer">0</span></li>
+                <li>Elements per sec: <span id="elementAverage">0</span></li>
             </ul>
         </nav>
         <canvas id="drawArea"></canvas>
@@ -37,61 +40,103 @@
             {type: "circle", x: 381, y: 444}
         ]
 
-        //TODO: Function to add an element of parameter type 'square' or 'circle':
-        function drawElements(value) {
+        //funksjon for å randomisere koordinater på formene for senere bruk (LÅNT FRA WORKSHOP 4)
+        function randomMinMax(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
 
-        };
+        //TODO: Function to add an element of parameter type 'square' or 'circle':
+        function addElement(type) {
+          if(type === "square") {
+            elements.push({
+              type: type,
+              x: randomMinMax(0, 600),
+              y: randomMinMax(0, 500)
+            })
+          }
+          if(type === "circle") {
+            elements.push({
+              type: type,
+              x: randomMinMax(0, 600),
+              y: randomMinMax(0, 500)
+            })
+          }
+        }
 
         //TODO: Function to remove random element:
-        
+        //https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
+        function removeElement() {
+            const removeRandom = elements.splice(Math.floor(Math.random() * elements.length), 1);
+          }
 
         //TODO: EventListeners to track user input:
         document.addEventListener("keydown", function(event) {
           if(event.key === "s") {
-            renderDrawings("square");
+            addElement("square");
+            console.log("Square")
           };
           if(event.key === "c") {
-            renderDrawings("circle");
+            addElement("circle");
+            console.log("Circle")
+          };
+          if(event.key === "r") {
+            removeElement();
+            console.log("Random shape removed")
           }
         })
-
+        
         //TODO: Count the element types and total and print to interface
+        //funksjon som teller og lagrer antall former og skriver dem ut
+        //https://stackoverflow.com/questions/47923254/python-how-to-count-all-objects-in-an-array-that-match-a-condition
         function countElements() {
-          let elementCounter = 0;
-          let squareCounter = 0;
-          let circleCounter = 0;
+          let totalElements = elements.length;
+          let totalCircles = elements.filter(element => element.type === "circle").length
+          let totalSquares = elements.filter(element => element.type === "square").length
 
-          if(elements.type === "square"){
-            elementCounter++;
-            squareCounter++;
-          } else if (elements.type === "circle") {
-            elementCounter++;
-            circleCounter++;
-          }
-          document.getElementById("squareCount").innerHTML = squareCounter;
-          document.getElementById("circleCount").innerHTML = circleCounter;
-          document.getElementById("totalCount").innerHTML = elementCounter;
+          document.getElementById("squareCount").innerHTML = totalSquares;
+          document.getElementById("circleCount").innerHTML = totalCircles;
+          document.getElementById("totalCount").innerHTML = totalElements;
         }
+
+
+        //setInterval function som teller sekunder
+        //deler også det totale element-antallet med de telte sekundene for å regne- og skrive ut gjennomsnittet
+        //lånt fra Workshop 4
+        let duration = 0;
+
+        setInterval(function() {
+          let totalElements = elements.length;
+          duration++
+          let average = totalElements / duration;
+          document.getElementById("timer").innerHTML = "sec " + duration;
+          document.getElementById("elementAverage").innerHTML = Math.round(average * 100) / 100;
+        }, 1000);
+
         
         //Function to draw on canvas:
-        function renderDrawings(shape) {
-            //Clear the rectangle
-            ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+        function renderDrawings() {
+          //Clear the rectangle
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          
             //TODO: Draw the elements on canvas:
-            if(shape === "square") {
-                ctx.beginPath();
-                ctx.rect(20, 20, 8, 8);
-                ctx.fillStyle = "lightblue";
-                ctx.fill();
-                ctx.closePath();
-            } else if(shape === "circle") {
-                ctx.beginPath();
-                ctx.arc(95, 50, 8, 0, 2 * Math.PI);
-                ctx.fillStyle = "yellow";
-                ctx.fill();
-                ctx.closePath();
-            }
+            //slet med å forstå hvordan syntaxen skulle se ut for å tegne elementene gjennom en .map() funksjon, fant ut av det ved hjelp av Thor
+            elements.map(
+              (element) => {
+                if(element.type === "square") {
+                  ctx.fillStyle = "lightblue"
+                  ctx.fillRect(element.x, element.y, 13, 13);
+                }
+                if(element.type === "circle") {
+                  ctx.beginPath();
+                  ctx.fillStyle = "gold";
+                  ctx.arc(element.x, element.y, 8, 0, 2 * Math.PI);
+                  ctx.fill();
+                  ctx.closePath();
+                }
+              }
+            )
+            //caller på countElements() funksjonen hver gang ett nytt element blir tegnet
+            countElements();
 
             //Testprint:
             console.log("Currently drawing frames...")

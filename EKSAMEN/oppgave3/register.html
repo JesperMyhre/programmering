@@ -96,24 +96,26 @@
 
     //Array of available positions
     //Legger til "Select position" som default value (FJERNES? MULIG DÅRLIG LØSNING)
-    const positions = ["Select Position", "Director", "Team leader", "Producer", "Engineer", "Designer"]
+    const positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
 
     function newPosition() {
       let inputElement = document.getElementById("newPosition").value;
       
       positions.push(inputElement);
+      positions.sort();
 
       loadInfo();
     }
 
     //Array of available departments
     //Legger til "Select department" som default value (FJERNES? MULIG DÅRLIG LØSNING)
-    const departments = ["Select Department", "Administration", "Human Resources", "Production", "Finances"]
+    const departments = ["Administration", "Human Resources", "Production", "Finances"]
 
     function newDepartment() {
       let inputElement = document.getElementById("newDepartment").value;
 
       departments.push(inputElement);
+      departments.sort();
 
       loadInfo();
     }
@@ -121,7 +123,7 @@
     //funksjon for å loade/bygge html-struktur når siden lastes og oppdatere når endringer blir gjort
     function loadInfo() {
       let staffCard = "";
-      //.map() funksjon for å bygge liste over ansatte
+      //.map() funksjon for å bygge ansatte-card
       staff.map(
         (person) => {
           staffCard += `
@@ -154,6 +156,7 @@
           position => { positionsList += `<option value="${position}">${position}</option>` }
         );
         document.getElementById("position").innerHTML = positionsList;
+
     }
     loadInfo();
   </script>
