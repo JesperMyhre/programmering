@@ -38,7 +38,7 @@
         </p>
         <p>
           <label for="position">Position</label>
-          <select id="position" name="postition">
+          <select id="position" name="position">
           </select>
         </p>
         <p>
@@ -85,17 +85,25 @@
       let emailInput = document.getElementById("email").value;
       let positionInput = document.getElementById("position").value
       let departmentInput = document.getElementById("department").value
+
       //lager ny array med input til brukeren, og slår den sammen med staff arrayen
       const newStaff = [
         {firstname: firstNameInput, lastname: lastNameInput, position: positionInput, department: departmentInput, email: emailInput}
       ];
 
       staff.push.apply(staff, newStaff);
-      loadInfo();
-    }
+
+      //sort funksjon som sorterer index til etternavn etter alfabetisk rekkefølge
+      //https://www.w3schools.com/js/js_array_sort.asp
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+      staff.sort(function(a, b){
+        return a.lastname.localeCompare(b.lastname)});
+
+        
+        pushStaff();
+      }
 
     //Array of available positions
-    //Legger til "Select position" som default value (FJERNES? MULIG DÅRLIG LØSNING)
     const positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
 
     function newPosition() {
@@ -103,11 +111,10 @@
       
       positions.push(inputElement);
 
-      loadInfo();
+      pushPositions();
     }
 
     //Array of available departments
-    //Legger til "Select department" som default value (FJERNES? MULIG DÅRLIG LØSNING)
     const departments = ["Administration", "Human Resources", "Production", "Finances"]
 
     function newDepartment() {
@@ -115,11 +122,20 @@
 
       departments.push(inputElement);
 
-      loadInfo();
+      pushDepartments();
     }
+      //funksjon som filtrerer posisjoner
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+      /*function filterPositions(position) {
+        const filter = staff.filter((employee) => employee.position === position);
+        console.log(filter);
+      }*/
+
+
 
     //funksjon for å loade/bygge html-struktur når siden lastes og oppdatere når endringer blir gjort
-    function loadInfo() {
+    function pushStaff(filteredStaff) {
+      //funksjon som bygger, sorterer, og skriver ut fra staff-array
       let staffCard = "";
       //.map() funksjon for å bygge ansatte-card
       staff.map(
@@ -130,28 +146,28 @@
             <p class="metainfo">
               <img src="posicon.png"> ${person.position}
               <img src="depicon.png"> ${person.department}
-            </p>
-            <p>
-              <a href="mailto:${person.email}">
-                <img src="mailicon.png">
-                Send mail to ${person.firstname}
-              </a>
-            </article>
-          `
-        })
-        
-        staff.sort((a, b) => {
-          const nameA = a.lastname.toUpperCase;
-          const nameB = b.lastname.toUpperCase;
-          if(nameA < nameB) {
-            return -1;
-          }
-          if(nameA > nameB) {
-            return 1;
-          }
-        });
+              </p>
+              <p>
+                <a href="mailto:${person.email}">
+                  <img src="mailicon.png">
+                  Send mail to ${person.firstname}
+                  </a>
+                  </article>
+                  `
+                });
         document.getElementById("staffList").innerHTML = staffCard;
-
+      }
+      function filterPositions(position) {
+      if(position === "All positions") {
+        pushStaff();
+      } else {
+        const filteredStaff = staff.filter((employee) => employee.position === position);
+        pushStaff(filteredStaff);
+      }
+    }
+      
+      //funksjon som bygger, sorterer, og skriver ut fra departments-array
+      function pushDepartments() {
         //.map() funksjon for å bygge departementliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
         let departmentList = "";
         departments.map(
@@ -159,23 +175,31 @@
           departments.sort()
         );
         document.getElementById("department").innerHTML = departmentList;
+      }
+      
+      //funksjon som bygger, sorterer, og skriver til HTML fra positions-array
+      function pushPositions() {
+      //.map() funksjon for å bygge arbeidsposisjonsliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
+      let positionsList = "";
+      positions.map(
+        position => { positionsList += `<option value="${position}">${position}</option>` },
+        positions.sort()
+      );
+      document.getElementById("position").innerHTML = positionsList;
 
-        //.map() funksjon for å bygge arbeidsposisjonsliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
-        let positionsList = "";
-        positions.map(
-          position => { positionsList += `<option value="${position}">${position}</option>` },
-          positions.sort()
-        );
-        document.getElementById("position").innerHTML = positionsList;
 
-        let positionFilterList = "";
-        positions.map(
-          position => { positionFilterList += `<li><button>${position}</button></li>`},
-          positions.sort()
-        );
-        document.getElementById("positionFilter").innerHTML = positionFilterList;
+      let positionFilterList = `<li><button class="all active" onclick="filterPositions('All positions')">All positions</button></li>`;
+      positions.map(
+        position => { positionFilterList += `<li><button class="${position}" onClick="filterPositions('${position}')">${position}</button></li>`},
+        positions.sort()
+      );
+      document.getElementById("positionFilter").innerHTML = positionFilterList;
     }
-    loadInfo();
+    
+    //caller funksjonene som bygger HTML-strukturen når siden først lastes inn
+    pushStaff();
+    pushDepartments();
+    pushPositions();
   </script>
 </body>
 
