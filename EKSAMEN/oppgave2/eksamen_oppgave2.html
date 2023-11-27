@@ -40,7 +40,7 @@
             {type: "circle", x: 381, y: 444}
         ]
 
-        //funksjon for å randomisere koordinater på formene for senere bruk (LÅNT FRA WORKSHOP 4)
+        //funksjon for å randomisere koordinater på elementene for senere bruk (LÅNT FRA WORKSHOP 4)
         function randomMinMax(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min)
         }
@@ -70,6 +70,7 @@
           }
 
         //TODO: EventListeners to track user input:
+        //eventListener som lytter etter spesifikke tastetrykk, caller funksjon og medsender parameter
         document.addEventListener("keydown", function(event) {
           if(event.key === "s") {
             addElement("square");
@@ -103,7 +104,6 @@
         //deler også det totale element-antallet med de telte sekundene for å regne- og skrive ut gjennomsnittet
         //lånt fra Workshop 4
         let duration = 0;
-
         setInterval(function() {
           let totalElements = elements.length;
           duration++
@@ -119,7 +119,7 @@
           ctx.clearRect(0, 0, canvas.width, canvas.height)
           
             //TODO: Draw the elements on canvas:
-            //slet med å forstå hvordan syntaxen skulle se ut for å tegne elementene gjennom en .map() funksjon, fant ut av det ved hjelp av Thor
+            //slet med å forstå hvordan syntaxen skulle se ut for å tegne elementene gjennom en .map() funksjon, fant ut av det etter et par dytt fra Thor
             elements.map(
               (element) => {
                 if(element.type === "square") {

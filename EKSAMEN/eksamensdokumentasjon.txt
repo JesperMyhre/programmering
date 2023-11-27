@@ -1,1 +1,8 @@
-Når jeg først leste gjennom oppgaven begynte jeg å svette ganske heftig.
+Når jeg åpnet oppgavedokumentet og tok første BISON-overblikk begynte jeg å svette ganske heftig.
+Jeg satte meg som mål å dekke alle minstekravene på hver av oppgavene, som anbefalt av faglærer, og ta det derfra.
+
+Oppgave 1: A
+Oppgave 2: A
+Oppgave 3: B
+
+Etter å ha satt meg inn i oppgavene ble jeg mer komfortabel og turte å sikte litt høyere. (Så sant koden er god)

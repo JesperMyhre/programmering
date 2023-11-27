@@ -68,8 +68,21 @@
             document.getElementById("calculation").value = ""
         }
 
+        let memoryCounter = 0;
         function addMemory() {
             let memoryArray = []
+            memoryCounter++;
+            let calculation = document.getElementById("calculation").value;
+            let result = eval(calculation);
+
+            document.getElementById("memory-bank").innerHTML = memoryCounter;
+            if(memoryCounter >= 1) {
+              
+            }
+
+
+            memoryArray.push(result);
+            console.log(memoryArray)
         }
     </script>
 </body>

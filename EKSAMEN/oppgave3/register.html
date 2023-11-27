@@ -102,7 +102,6 @@
       let inputElement = document.getElementById("newPosition").value;
       
       positions.push(inputElement);
-      positions.sort();
 
       loadInfo();
     }
@@ -115,7 +114,6 @@
       let inputElement = document.getElementById("newDepartment").value;
 
       departments.push(inputElement);
-      departments.sort();
 
       loadInfo();
     }
@@ -128,7 +126,7 @@
         (person) => {
           staffCard += `
           <article class="membercard">
-            <h3>${person.firstname} ${person.lastname}</h3>
+            <h3>${person.lastname}, ${person.firstname}</h3>
             <p class="metainfo">
               <img src="posicon.png"> ${person.position}
               <img src="depicon.png"> ${person.department}
@@ -141,22 +139,41 @@
             </article>
           `
         })
+        
+        staff.sort((a, b) => {
+          const nameA = a.lastname.toUpperCase;
+          const nameB = b.lastname.toUpperCase;
+          if(nameA < nameB) {
+            return -1;
+          }
+          if(nameA > nameB) {
+            return 1;
+          }
+        });
         document.getElementById("staffList").innerHTML = staffCard;
 
-        //.map() funksjon for å bygge departementliste i HTML-skjema fra array
+        //.map() funksjon for å bygge departementliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
         let departmentList = "";
         departments.map(
-          department => { departmentList += `<option value="${department}">${department}</option>` }
+          department => { departmentList += `<option value="${department}">${department}</option>` },
+          departments.sort()
         );
         document.getElementById("department").innerHTML = departmentList;
 
-        //.map() funksjon for å bygge arbeidsposisjonsliste i HTML-skjema fra array
+        //.map() funksjon for å bygge arbeidsposisjonsliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
         let positionsList = "";
         positions.map(
-          position => { positionsList += `<option value="${position}">${position}</option>` }
+          position => { positionsList += `<option value="${position}">${position}</option>` },
+          positions.sort()
         );
         document.getElementById("position").innerHTML = positionsList;
 
+        let positionFilterList = "";
+        positions.map(
+          position => { positionFilterList += `<li><button>${position}</button></li>`},
+          positions.sort()
+        );
+        document.getElementById("positionFilter").innerHTML = positionFilterList;
     }
     loadInfo();
   </script>
