@@ -30,11 +30,11 @@
         <h2>Add staff</h2>
         <p>
           <label for="firstname">Firstname</label>
-          <input type="text" name="firstname" id="firstname" placeholder="Firstname"/>
+          <input type="text" name="firstname" id="firstname" placeholder="Firstname" />
         </p>
         <p>
           <label for="lastname">Lastname</label>
-          <input type="text" name="lastname" id="lastname" placeholder="Lastname"/>
+          <input type="text" name="lastname" id="lastname" placeholder="Lastname" />
         </p>
         <p>
           <label for="position">Position</label>
@@ -56,7 +56,7 @@
         <h2>Add position</h2>
         <p>
           <label for="newPosition">Position</label><input type="text" name="newPosition" id="newPosition"
-            placeholder="Position"/>
+            placeholder="Position" />
         </p>
         <button id="savePosition" onClick="newPosition()">Save new position</button>
       </div>
@@ -75,8 +75,8 @@
     //Array of staff objects
     const staff = [
       { firstname: "Bill", lastname: "Gates", position: "Director", department: "Administration", email: "bill@gates.net" },
-    ]
-    
+    ];
+
     //funksjon som henter alle veridene fra HTML-skjema og bygger en ny array som slås sammen med staff arrayen
     function addStaff() {
       //Henter ut verdiene fra inputfeltene
@@ -86,53 +86,59 @@
       let positionInput = document.getElementById("position").value
       let departmentInput = document.getElementById("department").value
 
-      //lager ny array med input til brukeren, og slår den sammen med staff arrayen
-      const newStaff = [
-        {firstname: firstNameInput, lastname: lastNameInput, position: positionInput, department: departmentInput, email: emailInput}
-      ];
+      //if-test som sjekker om brukeren har valgt "Position" og/eller "Department"
+      if(positionInput === "Select Position") {
+        alert("Error: Choose position");
+      } else if (departmentInput === "Select Department") {
+        alert("Error: Choose department")
+      } else {
+        //lager ny array med input til brukeren, og slår den sammen med staff arrayen
+        const newStaff = [
+          { firstname: firstNameInput, lastname: lastNameInput, position: positionInput, department: departmentInput, email: emailInput }
+        ];
+        staff.push.apply(staff, newStaff);
+  
+        //sort funksjon som sorterer index til etternavn i alfabetisk rekkefølge
+        //https://www.w3schools.com/js/js_array_sort.asp
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+        staff.sort(function (a, b) {
+          return a.lastname.localeCompare(b.lastname)
+        });
 
-      staff.push.apply(staff, newStaff);
-
-      //sort funksjon som sorterer index til etternavn etter alfabetisk rekkefølge
-      //https://www.w3schools.com/js/js_array_sort.asp
-      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
-      staff.sort(function(a, b){
-        return a.lastname.localeCompare(b.lastname)});
-
-        
-        pushStaff();
+        pushStaff(); 
       }
+    }
 
     //Array of available positions
     const positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
 
+    //funksjon som tar verdi fra "Add position" feltet og pusher til array
     function newPosition() {
       let inputElement = document.getElementById("newPosition").value;
-      
       positions.push(inputElement);
-
       pushPositions();
     }
 
     //Array of available departments
     const departments = ["Administration", "Human Resources", "Production", "Finances"]
-
+    
+    //funksjon som tar verdi fra "Add department" feltet og pusher til array
     function newDepartment() {
       let inputElement = document.getElementById("newDepartment").value;
-
       departments.push(inputElement);
-
       pushDepartments();
     }
-      //funksjon som filtrerer posisjoner
-      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-      /*function filterPositions(position) {
-        const filter = staff.filter((employee) => employee.position === position);
-        console.log(filter);
-      }*/
-
-
-
+    
+    //funksjon som I TEORIEN skal sortere arbeidere etter stilling og skrive dem ut via pushStaff(x)--------------------------------------------------------------------------------
+    function filterPositions(position) {
+      if (position === "All positions") {
+        pushStaff();
+      } else {
+        const filteredStaff = staff.filter((employee) => employee.position === position);
+        console.log(filteredStaff)
+        pushStaff(filteredStaff);
+      }
+    }
     //funksjon for å loade/bygge html-struktur når siden lastes og oppdatere når endringer blir gjort
     function pushStaff(filteredStaff) {
       //funksjon som bygger, sorterer, og skriver ut fra staff-array
@@ -154,33 +160,25 @@
                   </a>
                   </article>
                   `
-                });
-        document.getElementById("staffList").innerHTML = staffCard;
-      }
-      function filterPositions(position) {
-      if(position === "All positions") {
-        pushStaff();
-      } else {
-        const filteredStaff = staff.filter((employee) => employee.position === position);
-        pushStaff(filteredStaff);
-      }
+        });
+      document.getElementById("staffList").innerHTML = staffCard;
     }
-      
-      //funksjon som bygger, sorterer, og skriver ut fra departments-array
-      function pushDepartments() {
-        //.map() funksjon for å bygge departementliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
-        let departmentList = "";
-        departments.map(
-          department => { departmentList += `<option value="${department}">${department}</option>` },
-          departments.sort()
-        );
-        document.getElementById("department").innerHTML = departmentList;
-      }
-      
-      //funksjon som bygger, sorterer, og skriver til HTML fra positions-array
-      function pushPositions() {
+
+    //funksjon som bygger, sorterer, og skriver ut fra departments-array
+    function pushDepartments() {
+      //.map() funksjon for å bygge departementliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
+      let departmentList = "<option>Select Department</option>";
+      departments.map(
+        department => { departmentList += `<option value="${department}">${department}</option>` },
+        departments.sort()
+      );
+      document.getElementById("department").innerHTML = departmentList;
+    }
+
+    //funksjon som bygger, sorterer, og skriver til HTML fra positions-array
+    function pushPositions() {
       //.map() funksjon for å bygge arbeidsposisjonsliste i HTML-skjema fra array, sorteres samtidig som det er skrevet ut
-      let positionsList = "";
+      let positionsList = "<option>Select Position</option>";
       positions.map(
         position => { positionsList += `<option value="${position}">${position}</option>` },
         positions.sort()
@@ -190,12 +188,12 @@
 
       let positionFilterList = `<li><button class="all active" onclick="filterPositions('All positions')">All positions</button></li>`;
       positions.map(
-        position => { positionFilterList += `<li><button class="${position}" onClick="filterPositions('${position}')">${position}</button></li>`},
+        position => { positionFilterList += `<li><button class="${position}" onClick="filterPositions('${position}')">${position}</button></li>` },
         positions.sort()
       );
       document.getElementById("positionFilter").innerHTML = positionFilterList;
     }
-    
+
     //caller funksjonene som bygger HTML-strukturen når siden først lastes inn
     pushStaff();
     pushDepartments();

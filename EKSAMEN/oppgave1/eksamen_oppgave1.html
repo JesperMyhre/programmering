@@ -37,8 +37,8 @@
         <div id="memory">
             <p>Memory (<span id="memory-bank">0</span>)</p>
             <button id="memory-add" onclick="addMemory()">Add</button>
-            <button id="memory-browseback" disabled>Previous</button>
-            <button id="memory-browseforward" disabled>Next</button>
+            <button id="memory-browseback" onclick="browseBack()" disabled>Previous</button>
+            <button id="memory-browseforward" onclick="browseForward()" disabled>Next</button>
         </div>
     </article>
 
@@ -68,21 +68,27 @@
             document.getElementById("calculation").value = ""
         }
 
-        let memoryCounter = 0;
+        //funksjon som lagrer regnestykke i et array og teller regnestykker lagret
         function addMemory() {
             let memoryArray = []
-            memoryCounter++;
             let calculation = document.getElementById("calculation").value;
             let result = eval(calculation);
-
-            document.getElementById("memory-bank").innerHTML = memoryCounter;
-            if(memoryCounter >= 1) {
-              
-            }
-
-
             memoryArray.push(result);
             console.log(memoryArray)
+
+            let memoryCounter = memoryArray.length;
+            document.getElementById("memory-bank").innerHTML = memoryCounter;
+            //if-test som enabler knapp dersom et regnestykke er lagret i minne
+            //https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
+            if(memoryCounter >= 1) {
+              document.getElementById("memory-browseback").disabled = false;
+            } else {
+              document.getElementById("memory-browseback").disabled = true;
+            }
+        };
+
+        function browseBack() {
+          
         }
     </script>
 </body>
