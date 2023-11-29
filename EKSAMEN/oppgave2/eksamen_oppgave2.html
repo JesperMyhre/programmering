@@ -64,6 +64,7 @@
         }
 
         //TODO: Function to remove random element:
+        //funksjon som fjerner ett tilfeldig element
         //https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
         function removeElement() {
             const removeRandom = elements.splice(Math.floor(Math.random() * elements.length), 1);
@@ -102,7 +103,6 @@
 
         //setInterval function som teller sekunder
         //deler også det totale element-antallet med de telte sekundene for å regne- og skrive ut gjennomsnittet
-        //lånt fra Workshop 4
         let duration = 0;
         setInterval(function() {
           let totalElements = elements.length;

@@ -67,10 +67,10 @@
         function clearScreen() {
             document.getElementById("calculation").value = ""
         }
-
+        
+        const memoryArray = []
         //funksjon som lagrer regnestykke i et array og teller regnestykker lagret
         function addMemory() {
-            let memoryArray = []
             let calculation = document.getElementById("calculation").value;
             let result = eval(calculation);
             memoryArray.push(result);
@@ -88,7 +88,8 @@
         };
 
         function browseBack() {
-          
+          const showCalculation = memoryArray[0];
+          document.getElementById("calculation").value = showCalculation;
         }
     </script>
 </body>

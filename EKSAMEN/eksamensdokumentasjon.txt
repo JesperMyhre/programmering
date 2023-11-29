@@ -1,8 +1,12 @@
 Når jeg åpnet oppgavedokumentet og tok første BISON-overblikk begynte jeg å svette ganske heftig.
 Jeg satte meg som mål å dekke alle minstekravene på hver av oppgavene, som anbefalt av faglærer, og ta det derfra.
 
-Oppgave 1: A
-Oppgave 2: A
-Oppgave 3: B
+Etter å ha jobbet litt med oppgavene bestemte jeg meg for å sikte på en C-karakter. Jeg valgte C fordi jeg syns omfanget av oppgavene var ganske utfordrene, 
+og mye av A- og B kravene kunne ta lang tid å finne ut av. Sammen med de andre fagene (som hadde eksamensinnlevering ca på samme tid som denne) tenkte jeg C var noe jeg kunne
+si meg fornøyd med.
 
-Etter å ha satt meg inn i oppgavene ble jeg mer komfortabel og turte å sikte litt høyere. (Så sant koden er god)
+For å oppnå C trengte jeg da:
+
+Oppgave 1: 10 krav (B)
+Oppgave 2: C
+Oppgave 3: C

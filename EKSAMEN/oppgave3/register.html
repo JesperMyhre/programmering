@@ -87,7 +87,7 @@
       let departmentInput = document.getElementById("department").value
 
       //if-test som sjekker om brukeren har valgt "Position" og/eller "Department"
-      if(positionInput === "Select Position") {
+      if (positionInput === "Select Position") {
         alert("Error: Choose position");
       } else if (departmentInput === "Select Department") {
         alert("Error: Choose department")
@@ -97,7 +97,7 @@
           { firstname: firstNameInput, lastname: lastNameInput, position: positionInput, department: departmentInput, email: emailInput }
         ];
         staff.push.apply(staff, newStaff);
-  
+
         //sort funksjon som sorterer index til etternavn i alfabetisk rekkefølge
         //https://www.w3schools.com/js/js_array_sort.asp
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
@@ -105,7 +105,7 @@
           return a.lastname.localeCompare(b.lastname)
         });
 
-        pushStaff(); 
+        pushStaff();
       }
     }
 
@@ -121,26 +121,66 @@
 
     //Array of available departments
     const departments = ["Administration", "Human Resources", "Production", "Finances"]
-    
+
     //funksjon som tar verdi fra "Add department" feltet og pusher til array
     function newDepartment() {
       let inputElement = document.getElementById("newDepartment").value;
       departments.push(inputElement);
       pushDepartments();
     }
-    
+
     //funksjon som I TEORIEN skal sortere arbeidere etter stilling og skrive dem ut via pushStaff(x)--------------------------------------------------------------------------------
+    //Oppdaterer listHeader etter valgt posisjon og antall ansatte
     function filterPositions(position) {
+      console.log(position);
       if (position === "All positions") {
+        document.getElementById("listHeader").innerHTML = "Showing all Staff"
         pushStaff();
       } else {
         const filteredStaff = staff.filter((employee) => employee.position === position);
-        console.log(filteredStaff)
-        pushStaff(filteredStaff);
-      }
-    }
+
+        document.getElementById("listHeader").innerHTML = `Showing ${filteredStaff.length} employees with position ${position}`
+
+        //.map() funksjon for å bygge ansatte-card basert på parameter sendt fra filterPositions-onClick
+        let filteredStaffCard = "";
+        filteredStaff.map(
+          (person) => {
+            filteredStaffCard += `
+            <article class="membercard">
+              <h3>${person.lastname}, ${person.firstname}</h3>
+              <p class="metainfo">
+                <img src="posicon.png"> ${person.position}
+                <img src="depicon.png"> ${person.department}
+                </p>
+                <p>
+                  <a href="mailto:${person.email}">
+                    <img src="mailicon.png">
+                    Send mail to ${person.firstname}
+                    </a>
+                    </article>
+                    `
+          });
+        document.getElementById("staffList").innerHTML = filteredStaffCard;
+
+        console.log(filteredStaff);
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+        /*const selectedButton = document.getElementById(position);
+        selectedButton.classList.toggle("active");
+
+        if(selecedButton.classList.contains()) {
+          selectedButton.classList.toggle("active");
+        } else if (selectedButton.classList.contains("active")) {
+          selectedButton.classList.toggle("active")
+        }*/
+
+      };
+  };
+
+  
+
     //funksjon for å loade/bygge html-struktur når siden lastes og oppdatere når endringer blir gjort
-    function pushStaff(filteredStaff) {
+    function pushStaff() {
       //funksjon som bygger, sorterer, og skriver ut fra staff-array
       let staffCard = "";
       //.map() funksjon for å bygge ansatte-card
@@ -188,7 +228,7 @@
 
       let positionFilterList = `<li><button class="all active" onclick="filterPositions('All positions')">All positions</button></li>`;
       positions.map(
-        position => { positionFilterList += `<li><button class="${position}" onClick="filterPositions('${position}')">${position}</button></li>` },
+        position => { positionFilterList += `<li><button id="${position}" onClick="filterPositions('${position}')">${position}</button></li>` },
         positions.sort()
       );
       document.getElementById("positionFilter").innerHTML = positionFilterList;
