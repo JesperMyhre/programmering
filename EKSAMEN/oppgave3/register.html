@@ -129,8 +129,8 @@
       pushDepartments();
     }
 
-    //funksjon som I TEORIEN skal sortere arbeidere etter stilling og skrive dem ut via pushStaff(x)--------------------------------------------------------------------------------
-    //Oppdaterer listHeader etter valgt posisjon og antall ansatte
+    //funksjon som sorterer arbeidere etter stilling og skrive dem ut via pushStaff(x)
+    //Oppdaterer listHeader etter valgt posisjon og antall matchende ansatte
     function filterPositions(position) {
       console.log(position);
       if (position === "All positions") {
@@ -165,10 +165,11 @@
         console.log(filteredStaff);
 
         //-------------------------------------------------------------------------------------------------------------------------------------------
-        /*const selectedButton = document.getElementById(position);
+        //https://stackoverflow.com/questions/50432864/javascript-to-toggle-multiple-buttons
+        const selectedButton = document.getElementById(position);
         selectedButton.classList.toggle("active");
 
-        if(selecedButton.classList.contains()) {
+        /*if(selecedButton.classList.contains()) {
           selectedButton.classList.toggle("active");
         } else if (selectedButton.classList.contains("active")) {
           selectedButton.classList.toggle("active")
@@ -177,11 +178,8 @@
       };
   };
 
-  
-
-    //funksjon for å loade/bygge html-struktur når siden lastes og oppdatere når endringer blir gjort
+  //funksjon som bygger og skriver ut fra staff-array
     function pushStaff() {
-      //funksjon som bygger, sorterer, og skriver ut fra staff-array
       let staffCard = "";
       //.map() funksjon for å bygge ansatte-card
       staff.map(

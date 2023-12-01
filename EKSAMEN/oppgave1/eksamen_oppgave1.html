@@ -82,14 +82,21 @@
             //https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
             if(memoryCounter >= 1) {
               document.getElementById("memory-browseback").disabled = false;
+              document.getElementById("memory-browseforward").disabled = false;
             } else {
               document.getElementById("memory-browseback").disabled = true;
+              document.getElementById("memory-browseforward").disabled = true;
             }
         };
 
         function browseBack() {
           const showCalculation = memoryArray[0];
           document.getElementById("calculation").value = showCalculation;
+        }
+
+        function browseForward() {
+            const showCalculation = memoryArray[1];
+            document.getElementById("calculation").value = showCalculation;
         }
     </script>
 </body>
