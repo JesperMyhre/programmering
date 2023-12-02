@@ -83,7 +83,7 @@
           };
           if(event.key === "r") {
             removeElement();
-            console.log("Random shape removed")
+            console.log("Random element removed")
           }
         })
         
@@ -103,6 +103,7 @@
 
         //setInterval function som teller sekunder
         //deler også det totale element-antallet med de telte sekundene for å regne- og skrive ut gjennomsnittet
+        //https://stackoverflow.com/questions/37187504/javascript-second-counter
         let duration = 0;
         setInterval(function() {
           let totalElements = elements.length;
@@ -119,7 +120,7 @@
           ctx.clearRect(0, 0, canvas.width, canvas.height)
           
             //TODO: Draw the elements on canvas:
-            //slet med å forstå hvordan syntaxen skulle se ut for å tegne elementene gjennom en .map() funksjon, fant ut av det etter et par dytt fra Thor
+            //slet med å forstå hvordan syntaxen skulle se ut for å tegne elementene gjennom en .map() funksjon, fant ut av det etter et par dytt fra Thor (medelev)
             elements.map(
               (element) => {
                 if(element.type === "square") {

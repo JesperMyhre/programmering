@@ -8,5 +8,38 @@ si meg fornøyd med.
 For å oppnå C trengte jeg da:
 
 Oppgave 1: 10 krav (B)
-Oppgave 2: C
-Oppgave 3: C
+Oppgave 2: 8 krav (C)
+Oppgave 3: 13 krav (C)
+
+Under er liste over alle kilder brukt. Kilder finnes også kommentert i koden hvor de er brukt.
+
+Kilder oppgave 1:
+Linje 82
+https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
+
+Kilder oppgave 2:
+Linje 43
+randomMinMax funksjon lånt fra Workshop 4
+
+Linje 69
+https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
+
+Linje 93
+https://stackoverflow.com/questions/47923254/python-how-to-count-all-objects-in-an-array-that-match-a-condition
+
+Linje 108
+https://stackoverflow.com/questions/37187504/javascript-second-counter
+
+Linje 124
+Slet med å forstå hvordan syntaxen skulle se ut for å tegne elementene gjennom en .map() funksjon, fant ut av det etter et par dytt fra Thor (medelev)
+
+
+Kilder oppgave 3:
+Linje 104
+https://www.w3schools.com/js/js_array_sort.asp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+
+Linje 134
+
+Linje 169
+https://stackoverflow.com/questions/50432864/javascript-to-toggle-multiple-buttons
