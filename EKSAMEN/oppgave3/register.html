@@ -77,7 +77,6 @@
       { firstname: "Bill", lastname: "Gates", position: "Director", department: "Administration", email: "bill@gates.net" },
     ];
 
-    //funksjon som henter alle veridene fra HTML-skjema og bygger en ny array som slås sammen med staff arrayen
     function addStaff() {
       //Henter ut verdiene fra inputfeltene
       let firstNameInput = document.getElementById("firstname").value;
@@ -128,7 +127,6 @@
       pushDepartments();
     }
 
-    //funksjon som sorterer ansatte etter stilling og skrive dem ut via pushStaff(x)
     //Oppdaterer listHeader etter valgt posisjon og antall matchende ansatte
     function filterPositions(position) {
       console.log(position);
